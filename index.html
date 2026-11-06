@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#10283a">
+<title>AI Video Producer Studio</title>
+<style>
+:root{--navy:#10283a;--navy2:#18384d;--blue:#2479a9;--cyan:#75c8dc;--bg:#f3f6f9;--card:#fff;--ink:#172b3a;--muted:#6c7d89;--line:#e3eaf0;--green:#16845b;--shadow:0 12px 35px rgba(18,45,65,.08)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+button,input,select,textarea{font:inherit}button{cursor:pointer}.app{min-height:100vh;display:grid;grid-template-columns:250px 1fr}
+.sidebar{background:var(--navy);color:#eaf3f8;padding:25px 17px;display:flex;flex-direction:column;gap:28px}.brand{display:flex;align-items:center;gap:12px;padding:0 8px}.brandmark{width:42px;height:42px;border-radius:13px;background:#28516a;display:grid;place-items:center;font-size:21px}.brand strong{display:block;font-size:14px;letter-spacing:.08em}.brand small{color:#a9c1cf;font-size:11px}.navlabel{font-size:10px;letter-spacing:.14em;color:#8eaab9;padding:0 12px;margin-bottom:8px}.nav{display:grid;gap:6px}.nav button{border:0;color:#c7d7e1;background:transparent;text-align:left;padding:12px;border-radius:10px;display:flex;gap:12px;align-items:center}.nav button.active,.nav button:hover{background:#24475d;color:white}.nav .ico{width:20px;text-align:center}.side-note{margin-top:auto;border:1px solid #35566a;background:#173448;border-radius:13px;padding:14px;font-size:12px;color:#bfd0da}.side-note b{color:white;display:block;margin-bottom:5px}
+main{min-width:0}.topbar{height:72px;background:white;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(18px,4vw,48px)}.crumb{color:var(--muted);font-size:13px}.status{font-size:12px;color:var(--green);background:#e8f6ef;padding:7px 11px;border-radius:30px;font-weight:650}.content{max-width:1180px;margin:auto;padding:34px clamp(18px,4vw,48px) 60px}.hero{background:linear-gradient(120deg,#10283a,#1d4c66);color:white;border-radius:20px;padding:30px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px;box-shadow:var(--shadow)}.eyebrow{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:#9cc7d7;font-weight:700}.hero h1{font-size:clamp(25px,4vw,36px);line-height:1.15;margin:8px 0}.hero p{margin:0;color:#c5d8e2;max-width:610px}.hero-icon{font-size:58px;opacity:.9}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:20px 0 28px}.stat,.panel,.result{background:var(--card);border:1px solid var(--line);border-radius:15px;box-shadow:0 4px 15px rgba(20,50,70,.025)}.stat{padding:17px 19px}.stat small{color:var(--muted)}.stat strong{display:block;font-size:20px;margin-top:4px}.layout{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(270px,.8fr);gap:18px;align-items:start}.panel{padding:23px}.panel h2{font-size:18px;margin:0 0 5px}.sub{font-size:13px;color:var(--muted);margin:0 0 22px}.field{margin:0 0 18px}.field label,.field legend{font-size:13px;font-weight:700;display:block;margin-bottom:8px}.field input,.field select,.field textarea{width:100%;border:1px solid #d8e2e9;border-radius:10px;padding:11px 12px;background:#fff;color:var(--ink);outline:none}.field input:focus,.field select:focus,.field textarea:focus{border-color:#4a9ac0;box-shadow:0 0 0 3px #e6f4fa}.field textarea{min-height:82px;resize:vertical}.choices{display:flex;flex-wrap:wrap;gap:8px}.choice{position:relative}.choice input{position:absolute;opacity:0;pointer-events:none}.choice span{display:block;border:1px solid #dce5eb;border-radius:9px;padding:8px 12px;font-size:13px;color:#526675;cursor:pointer}.choice input:checked+span{background:#eaf5fa;border-color:#4c9bc0;color:#155879;font-weight:700}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.btn{border:0;border-radius:10px;padding:11px 16px;font-weight:700}.primary{background:var(--blue);color:white}.primary:hover{background:#1c668f}.secondary{background:#edf2f5;color:#314b5d}.btn:disabled{opacity:.5;cursor:not-allowed}.preview{position:sticky;top:18px}.previewbox{background:#f5f8fa;border:1px solid var(--line);border-radius:11px;padding:14px;margin-top:16px}.previewrow{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid #e5ebef;font-size:13px}.previewrow:last-child{border:0}.previewrow span:first-child{color:var(--muted)}.pill{display:inline-block;background:#e8f3f8;color:#28647e;border-radius:30px;padding:4px 9px;font-size:11px;font-weight:700}.checklist{display:grid;gap:13px;margin-top:17px}.check{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:#526675}.check i{font-style:normal;color:var(--green);font-weight:800}.result{padding:23px;margin-top:18px;display:none}.result.show{display:block}.result h3{margin:0 0 8px}.result pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f5f8fa;border:1px solid var(--line);padding:15px;border-radius:10px;font:12px/1.6 ui-monospace,SFMono-Regular,Consolas,monospace;max-height:390px;overflow:auto}.notice{font-size:12px;color:var(--muted);margin-top:13px}.page{display:none}.page.active{display:block}.workflow{display:grid;gap:12px}.step{display:flex;gap:13px;border:1px solid var(--line);border-radius:12px;padding:14px}.num{width:30px;height:30px;flex:none;border-radius:9px;background:#e8f3f8;color:#236987;display:grid;place-items:center;font-weight:800}.step b{display:block;font-size:14px}.step small{color:var(--muted)}.footer{text-align:center;color:#8998a2;font-size:11px;margin-top:30px}
+@media(max-width:850px){.app{grid-template-columns:1fr}.sidebar{padding:13px 16px;gap:12px}.brand{padding:0}.navlabel,.side-note{display:none}.nav{display:flex;overflow:auto}.nav button{white-space:nowrap;padding:9px 11px}.topbar{height:55px}.content{padding-top:20px}.layout{grid-template-columns:1fr}.preview{position:static}.hero-icon{display:none}}
+@media(max-width:560px){.stats{grid-template-columns:1fr 1fr}.stats .stat:last-child{display:none}.hero{padding:23px}.panel{padding:18px}.actions .btn{width:100%}}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand"><div class="brandmark">🎬</div><div><strong>VIDEO PRODUCER</strong><small>CREATIVE STUDIO</small></div></div>
+    <div><div class="navlabel">WORKSPACE</div><nav class="nav">
+      <button class="active" data-page="create"><span class="ico">✦</span> Produksi video</button>
+      <button data-page="workflow"><span class="ico">◈</span> AI Workflow</button>
+      <button data-page="settings"><span class="ico">⚙</span> Pengaturan</button>
+    </nav></div>
+    <div class="side-note"><b>Framework aktif · Referensi #01</b>3D stylized simulation dengan alur hook → konteks → proses → hasil → dampak.</div>
+  </aside>
+  <main>
+    <header class="topbar"><div class="crumb">Workspace <span style="color:#b4c0c8">/</span> <b id="crumb">Produksi video</b></div><div class="status">● STUDIO READY</div></header>
+    <div class="content">
+      <section class="hero">
+        <div><div class="eyebrow">AI-powered creative workspace</div><h1>Video Creation Studio</h1><p>Ubah satu ide menjadi paket produksi video edukasi: naskah, storyboard, prompt visual, animasi, dan arahan editing.</p></div>
+        <div class="hero-icon">🎞️</div>
+      </section>
+      <div class="stats">
+        <div class="stat"><small>Framework</small><strong>Referensi #01</strong></div>
+        <div class="stat"><small>Visual engine</small><strong>3D Simulation</strong></div>
+        <div class="stat"><small>Output</small><strong>Production pack</strong></div>
+      </div>
+
+      <section class="page active" id="page-create">
+        <div class="layout">
+          <div class="panel">
+            <h2>Buat proyek video baru</h2><p class="sub">Lengkapi informasi dasar. AI dapat mengembangkan detail produksinya.</p>
+            <form id="projectForm">
+              <div class="field"><label for="topic">01 · Topik video</label><textarea id="topic" required placeholder="Contoh: Bagaimana cara kerja listrik?"></textarea></div>
+              <div class="field"><label>02 · Bahasa narasi</label><div class="choices">
+                <label class="choice"><input type="radio" name="language" value="Indonesia" checked><span>Indonesia</span></label>
+                <label class="choice"><input type="radio" name="language" value="English"><span>English</span></label>
+              </div></div>
+              <div class="field"><label>03 · Durasi total</label><div class="choices">
+                <label class="choice"><input type="radio" name="duration" value="30" ><span>30 detik</span></label>
+                <label class="choice"><input type="radio" name="duration" value="60" checked><span>60 detik</span></label>
+                <label class="choice"><input type="radio" name="duration" value="90"><span>90 detik</span></label>
+                <label class="choice"><input type="radio" name="duration" value="120"><span>120 detik</span></label>
+              </div></div>
+              <div class="field"><label>04 · Durasi per scene</label><div class="choices">
+                <label class="choice"><input type="radio" name="scene" value="5"><span>5 detik</span></label>
+                <label class="choice"><input type="radio" name="scene" value="10" checked><span>10 detik</span></label>
+                <label class="choice"><input type="radio" name="scene" value="15"><span>15 detik</span></label>
+              </div></div>
+              <div class="field"><label>05 · Rasio video</label><div class="choices">
+                <label class="choice"><input type="radio" name="ratio" value="9:16" checked><span>9:16 · Vertikal</span></label>
+                <label class="choice"><input type="radio" name="ratio" value="16:9"><span>16:9 · Landscape</span></label>
+                <label class="choice"><input type="radio" name="ratio" value="1:1"><span>1:1 · Square</span></label>
+              </div></div>
+              <div class="field"><label for="style">06 · Gaya visual</label><select id="style">
+                <option>3D Stylized Simulation — Referensi #01</option><option>3D Realistic</option><option>2D Educational Animation</option><option>Clay 3D Animation</option>
+              </select></div>
+              <div class="field"><label for="extra">07 · Instruksi tambahan <span style="font-weight:400;color:#81909a">(opsional)</span></label><textarea id="extra" placeholder="Karakter, lingkungan, suasana, atau arahan khusus..."></textarea></div>
+              <div class="actions"><button class="btn primary" type="submit">✦ Generate production pack</button><button class="btn secondary" type="reset" id="resetBtn">Reset form</button></div>
+            </form>
+            <p class="notice">Tombol generate menyiapkan brief dan prompt kerja. Untuk AI generatif sungguhan, hubungkan endpoint backend Anda (lihat catatan integrasi).</p>
+          </div>
+          <aside class="panel preview">
+            <h2>Ringkasan proyek</h2><p class="sub">Preview akan diperbarui saat Anda mengisi formulir.</p>
+            <span class="pill">LIVE PREVIEW</span>
+            <div class="previewbox">
+              <div class="previewrow"><span>Topik</span><b id="pTopic">Belum diisi</b></div>
+              <div class="previewrow"><span>Durasi</span><b id="pDuration">60 detik</b></div>
+              <div class="previewrow"><span>Scene</span><b id="pScenes">6 scene</b></div>
+              <div class="previewrow"><span>Bahasa</span><b id="pLanguage">Indonesia</b></div>
+              <div class="previewrow"><span>Rasio</span><b id="pRatio">9:16</b></div>
+            </div>
+            <div class="checklist"><div class="check"><i>✓</i> Analisis topik dan konsep</div><div class="check"><i>✓</i> Naskah narasi dan teks layar</div><div class="check"><i>✓</i> Storyboard per scene</div><div class="check"><i>✓</i> Prompt gambar dan animasi</div><div class="check"><i>✓</i> Arahan kamera dan editing</div></div>
+          </aside>
+        </div>
+        <div class="result" id="result"><h3>Production brief siap</h3><p class="sub">Salin brief ini ke AI, atau unduh sebagai file JSON untuk workflow backend.</p><pre id="output"></pre><div class="actions"><button class="btn primary" id="copyBtn" type="button">Salin prompt</button><button class="btn secondary" id="downloadBtn" type="button">Unduh JSON</button></div></div>
+      </section>
+
+      <section class="page" id="page-workflow">
+        <div class="panel"><h2>AI production workflow</h2><p class="sub">Rangkaian tahapan yang dijalankan untuk menghasilkan paket produksi.</p><div class="workflow">
+          <div class="step"><div class="num">1</div><div><b>Topic analysis</b><small>Mengurai fenomena, audiens, dan pesan utama.</small></div></div>
+          <div class="step"><div class="num">2</div><div><b>Creative development</b><small>Menyusun hook dan alur cerita edukatif.</small></div></div>
+          <div class="step"><div class="num">3</div><div><b>Script writing</b><small>Menulis narasi dan teks layar yang sinkron.</small></div></div>
+          <div class="step"><div class="num">4</div><div><b>Scene breakdown</b><small>Membagi durasi menjadi adegan dengan satu gagasan utama per scene.</small></div></div>
+          <div class="step"><div class="num">5</div><div><b>Storyboard</b><small>Menentukan komposisi, aksi, dan gerakan kamera.</small></div></div>
+          <div class="step"><div class="num">6</div><div><b>Visual prompt generation</b><small>Membuat prompt gambar dan animasi dengan konsistensi visual.</small></div></div>
+          <div class="step"><div class="num">7</div><div><b>Production packaging</b><small>Mengemas naskah, storyboard, prompt, subtitle, dan arahan editing.</small></div></div>
+        </div></div>
+      </section>
+
+      <section class="page" id="page-settings">
+        <div class="panel"><h2>Pengaturan studio</h2><p class="sub">Standar visual yang digunakan sebagai preset awal.</p>
+          <div class="previewbox"><div class="previewrow"><span>Framework</span><b>Video Reference #01</b></div><div class="previewrow"><span>Genre</span><b>Explainer edukatif</b></div><div class="previewrow"><span>Visual</span><b>3D stylized simulation</b></div><div class="previewrow"><span>Resolusi acuan</span><b>1080 × 1920</b></div><div class="previewrow"><span>Frame rate acuan</span><b>30 FPS</b></div></div>
+          <div class="notice"><b>Integrasi AI:</b> Jangan menaruh API key provider AI di file HTML atau browser. Buat backend (misalnya Node.js/Python) yang menyimpan API key sebagai environment variable, lalu hubungkan formulir ke endpoint backend seperti <code>/api/generate</code>. Endpoint ini belum dikonfigurasi pada versi statis ini.</div>
+        </div>
+      </section>
+      <div class="footer">AI VIDEO PRODUCER STUDIO · Prototype v1.0 · Static hosting ready</div>
+    </div>
+  </main>
+</div>
+<script>
+const $=s=>document.querySelector(s);
+const $$=s=>[...document.querySelectorAll(s)];
+const form=$('#projectForm');
+function val(name){return document.querySelector(`input[name="${name}"]:checked`).value}
+function updatePreview(){
+ const topic=$('#topic').value.trim();
+ const duration=Number(val('duration')),scene=Number(val('scene'));
+ $('#pTopic').textContent=topic||'Belum diisi';
+ $('#pDuration').textContent=duration+' detik';
+ $('#pScenes').textContent=Math.ceil(duration/scene)+' scene';
+ $('#pLanguage').textContent=val('language');
+ $('#pRatio').textContent=val('ratio');
+}
+form.addEventListener('input',updatePreview);
+form.addEventListener('change',updatePreview);
+$$('.nav button').forEach(btn=>btn.addEventListener('click',()=>{
+ $$('.nav button').forEach(b=>b.classList.toggle('active',b===btn));
+ $$('.page').forEach(p=>p.classList.toggle('active',p.id==='page-'+btn.dataset.page));
+ $('#crumb').textContent=btn.textContent.trim();
+}));
+let latest=null;
+form.addEventListener('submit',e=>{
+ e.preventDefault();
+ const duration=Number(val('duration')),scene=Number(val('scene'));
+ latest={
+  project_name:$('#topic').value.trim(),language:val('language'),
+  duration_seconds:duration,scene_duration_seconds:scene,
+  estimated_scene_count:Math.ceil(duration/scene),aspect_ratio:val('ratio'),
+  visual_style:$('#style').value,additional_instructions:$('#extra').value.trim(),
+  reference_framework:'Video Reference Framework #01',
+  reference_dna:{genre:'Explainer edukatif',visual:'3D stylized simulation',structure:['Hook situasional','Konteks fenomena','Proses/mekanisme','Hasil dan skala','Dampak dan penutup'],camera:['Close-up','Medium','Wide','Aerial'],palette:['Biru langit','Hijau alam','Cokelat tanah','Abu-abu beton']},
+  requested_outputs:['Konsep dan hook','Naskah narasi lengkap','Storyboard setiap scene','Prompt gambar setiap scene','Prompt animasi setiap scene','Subtitle dan teks layar','Arahan kamera, transisi, dan editing']
+ };
+ const prompt=`Anda adalah AI Video Producer. Buat paket produksi video edukasi lengkap berdasarkan brief berikut.\n\n${JSON.stringify(latest,null,2)}\n\nIkuti DNA visual Framework Referensi #01. Buat alur hook → konteks → proses → hasil → dampak. Satu scene menyampaikan satu gagasan. Jaga kesinambungan karakter, lokasi, objek, pencahayaan, dan gaya visual. Hitung pembagian scene sesuai durasi. Hasilkan naskah, storyboard, prompt gambar, prompt animasi, teks layar, serta arahan editing. Jangan mengarang detail faktual; tandai hal yang perlu diverifikasi.`;
+ $('#output').textContent=prompt;
+ $('#result').classList.add('show');
+ $('#result').scrollIntoView({behavior:'smooth',block:'start'});
+});
+$('#copyBtn').addEventListener('click',async()=>{
+ try{await navigator.clipboard.writeText($('#output').textContent);$('#copyBtn').textContent='✓ Tersalin';}
+ catch(e){$('#copyBtn').textContent='Salin manual dari kotak prompt';}
+});
+$('#downloadBtn').addEventListener('click',()=>{
+ const blob=new Blob([JSON.stringify(latest,null,2)],{type:'application/json'});
+ const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='video-production-brief.json';a.click();URL.revokeObjectURL(a.href);
+});
+$('#resetBtn').addEventListener('click',()=>setTimeout(()=>{$('#result').classList.remove('show');updatePreview()},0));
+updatePreview();
+</script>
+</body>
+</html>
