@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b1220">
+<meta name="description" content="NexaForce — local prompt studio for educational animation videos.">
+<title>NexaForce — How Come Animasi</title>
+<style>
+:root{--bg:#0a1020;--surface:#111b30;--surface2:#17243b;--line:#2b3a57;--ink:#edf4ff;--muted:#9eacc5;--mint:#69e0cb;--blue:#8eb7ff;--warn:#f4c979;--shadow:0 22px 60px #0004}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 12% -5%,#1d3654 0,transparent 42%),radial-gradient(ellipse at 95% 15%,#152d3c 0,transparent 32%),var(--bg);color:var(--ink);font:15px/1.55 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+.wrap{width:min(1180px,calc(100% - 36px));margin:auto;padding:30px 0 64px}.top{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:42px}.brand{display:flex;align-items:center;gap:12px}.logo{height:44px;width:44px;border-radius:14px;background:linear-gradient(135deg,var(--mint),var(--blue));display:grid;place-items:center;color:#071722;font-weight:950;font-size:21px;box-shadow:0 8px 24px #69e0cb30}.brandname{font-size:18px;font-weight:850;letter-spacing:.13em}.brandtag{font-size:10px;color:var(--muted);letter-spacing:.19em;margin-top:1px}.local-pill{font-size:11px;color:#c7f7ec;border:1px solid #2e6d68;background:#143a3a80;border-radius:99px;padding:7px 11px;white-space:nowrap}
+.hero{max-width:760px;margin-bottom:26px}.eyebrow{font-size:11px;color:var(--mint);font-weight:800;letter-spacing:.19em;text-transform:uppercase;margin-bottom:10px}h1{font-size:clamp(34px,5.4vw,58px);letter-spacing:-.045em;line-height:1.04;margin:0 0 13px}.hero p{color:var(--muted);font-size:16px;margin:0;max-width:650px}
+.grid{display:grid;grid-template-columns:350px minmax(0,1fr);gap:18px;align-items:start}.panel{background:linear-gradient(155deg,#142039f2,#10192bf2);border:1px solid var(--line);border-radius:19px;padding:21px;box-shadow:var(--shadow)}.panel-title{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 18px;font-size:16px}.step{font-size:10px;color:var(--mint);letter-spacing:.13em;font-weight:800}
+.field{margin-bottom:16px}.field label{display:block;font-size:12px;color:#c0cde2;font-weight:700;margin-bottom:7px}.field textarea,.field select,.field input{width:100%;border:1px solid #31415f;border-radius:11px;background:#0b1426;color:var(--ink);padding:12px 13px;font:inherit;outline:none;transition:border .15s,box-shadow .15s}.field textarea{min-height:116px;resize:vertical}.field textarea:focus,.field select:focus,.field input:focus{border-color:var(--mint);box-shadow:0 0 0 3px #69e0cb18}.hint{font-size:11px;color:#8494b0;margin-top:6px}.two{display:grid;grid-template-columns:1fr 1fr;gap:11px}.primary{width:100%;border:0;border-radius:12px;background:linear-gradient(105deg,var(--mint),#9ae7d6);color:#08202a;font-weight:850;font-size:14px;padding:14px 16px;cursor:pointer;box-shadow:0 10px 25px #69e0cb24;transition:transform .15s,filter .15s}.primary:hover{transform:translateY(-1px);filter:brightness(1.04)}button:focus-visible{outline:3px solid #8eb7ff;outline-offset:3px}.note{border:1px solid #65552d;background:#332b183d;color:#ddc999;border-radius:11px;padding:11px 12px;font-size:11px;margin-top:14px}
+.result-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:15px}.result-head h2{margin:0;font-size:16px}.actions{display:flex;gap:8px;flex-wrap:wrap}.btn{border:1px solid #354664;border-radius:9px;background:#1a2943;color:#e4edff;padding:8px 11px;font-size:11px;font-weight:750;cursor:pointer}.btn:hover{background:#243754}.btn:disabled{opacity:.5;cursor:not-allowed}.empty{border:1px dashed #3b4d6c;border-radius:15px;padding:52px 20px;text-align:center;color:var(--muted)}.empty .spark{font-size:28px;color:var(--mint);margin-bottom:8px}.empty strong{display:block;color:var(--ink);font-size:15px;margin-bottom:5px}
+.meta{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 15px}.chip{font-size:10px;color:#b9c8e0;background:#1b2a43;border:1px solid #30415f;border-radius:30px;padding:5px 9px}
+.scene{background:linear-gradient(145deg,#142139,#10192a);border:1px solid #2c3b57;border-radius:14px;padding:16px;margin-bottom:12px}.scene-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:13px}.scene-title{font-size:13px;font-weight:850}.scene-time{font-size:10px;color:var(--mint);background:#163a3a;border-radius:30px;padding:4px 8px;white-space:nowrap}.scene-block{margin-top:12px}.scene-block-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:5px}.scene-label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:850;color:#91a6c8;margin-bottom:0}.copy-one{padding:5px 9px;font-size:10px;white-space:nowrap}.scene-text{font-size:13px;color:#e1e9f7;white-space:pre-wrap;overflow-wrap:anywhere}.scene-actions{display:flex;justify-content:flex-end;margin-top:13px}.status{font-size:11px;color:var(--muted);min-height:19px;margin-top:11px}.footer{text-align:center;color:#71819e;font-size:10px;margin-top:25px}
+@media(max-width:850px){.grid{grid-template-columns:1fr}.top{margin-bottom:30px}.wrap{width:min(100% - 26px,700px);padding-top:20px}.panel{padding:17px}}
+@media(max-width:420px){.local-pill{display:none}.two{gap:8px}.panel{padding:15px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand"><div class="logo">N</div><div><div class="brandname">NEXAFORCE</div><div class="brandtag">HOW COME ANIMASI</div></div></div>
+    <div class="local-pill">● LOCAL MODE · NO API KEY</div>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">Educational animation prompt studio</div>
+    <h1>Create your prompts.</h1>
+    <p>Ubah satu ide menjadi rangkaian scene, voice-over, image prompt, dan video prompt yang siap Anda kembangkan menjadi video animasi.</p>
+  </section>
+
+  <main class="grid">
+    <section class="panel">
+      <h2 class="panel-title">Pengaturan video <span class="step">01 / INPUT</span></h2>
+      <div class="field">
+        <label for="topic">Topik / judul video</label>
+        <textarea id="topic" placeholder="Contoh: Bagaimana bendungan menghasilkan listrik?"></textarea>
+        <div class="hint">Tuliskan ide utama dengan jelas agar prompt lebih terarah.</div>
+      </div>
+      <div class="field">
+        <label for="language">Bahasa voice-over</label>
+        <select id="language">
+          <option value="Bahasa Indonesia">Bahasa Indonesia</option>
+          <option value="English">English</option>
+          <option value="Bahasa Melayu">Bahasa Melayu</option>
+          <option value="日本語">日本語</option>
+          <option value="العربية">العربية</option>
+          <option value="Español">Español</option>
+          <option value="Français">Français</option>
+        </select>
+      </div>
+      <div class="two">
+        <div class="field"><label for="total">Durasi total (detik)</label><input id="total" type="number" min="10" max="3600" value="60"></div>
+        <div class="field"><label for="perScene">Durasi per scene (detik)</label><input id="perScene" type="number" min="3" max="60" value="8"></div>
+      </div>
+      <div class="field">
+        <label for="ratio">Rasio video</label>
+        <select id="ratio"><option value="16:9">16:9 · Landscape</option><option value="9:16">9:16 · Portrait</option><option value="1:1">1:1 · Square</option></select>
+      </div>
+      <button class="primary" id="generate">✦ Generate Prompts</button>
+      <div class="status" id="status" aria-live="polite"></div>
+    </section>
+
+    <section class="panel">
+      <div class="result-head">
+        <h2>Hasil produksi <span class="step">02 / OUTPUT</span></h2>
+        <div class="actions" id="actions" hidden>
+          <button class="btn" id="copyPrompts">Copy All Prompts</button>
+          <button class="btn" id="copyVO">Copy All Voice-over</button>
+          <button class="btn" id="reset">Reset</button>
+        </div>
+      </div>
+      <div id="summary" class="meta" hidden></div>
+      <div id="results"><div class="empty"><div class="spark">✧</div><strong>Workspace siap digunakan</strong>Masukkan topik di panel kiri, lalu tekan Generate Prompts.</div></div>
+    </section>
+  </main>
+  <div class="footer">NEXAFORCE · LOCAL PROMPT WORKSPACE · Runs directly in your browser</div>
+</div>
+
+<script>
+"use strict";
+const $ = id => document.getElementById(id);
+let scenes = [];
+let generationSettings = null;
+let variationCounter = 0;
+
+const escapeHTML = value => String(value ?? "").replace(/[&<>"']/g, ch => ({
+  "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+}[ch]));
+
+function cleanTopic(value) {
+  return value.trim().replace(/\s+/g, " ").replace(/[.!?]+$/,"");
+}
+function splitTopic(topic) {
+  return topic.split(/[,;:]/).map(s=>s.trim()).filter(Boolean);
+}
+function distributeDuration(total, perScene) {
+  const count = Math.ceil(total / perScene);
+  const durations = [];
+  let remaining = total;
+  for (let i=0;i<count;i++) {
+    const duration = Math.min(perScene, remaining);
+    durations.push(duration);
+    remaining -= duration;
+  }
+  return durations;
+}
+function topicFocus(topic) {
+  const parts = splitTopic(topic);
+  return parts.length ? parts.join(", ") : topic;
+}
+function choose(arr, seed) {
+  return arr[Math.abs(seed) % arr.length];
+}
+function buildScene(index, duration, settings, variation=0) {
+  const {topic, language, ratio, total, perScene} = settings;
+  const n = index + 1;
+  const focus = topicFocus(topic);
+  const openings = [
+    `Mulai dengan memperlihatkan ${focus} secara jelas dalam konteks yang mudah dikenali.`,
+    `Buka scene dengan sudut pandang yang memperkenalkan ${focus} kepada penonton.`,
+    `Tampilkan detail utama ${focus} dan bangun rasa ingin tahu penonton.`
+  ];
+  const explanations = [
+    `Perlihatkan bagaimana bagian-bagian penting saling berhubungan dalam ${focus}.`,
+    `Visualisasikan proses utama secara bertahap, dari kondisi awal menuju perubahan yang terjadi.`,
+    `Dekatkan kamera pada detail yang membantu menjelaskan prinsip kerja atau gagasan di balik topik.`
+  ];
+  const transitions = [
+    `Hubungkan adegan dengan gerakan kamera yang halus dan arah gerak yang mudah diikuti.`,
+    `Gunakan transisi visual yang natural agar hubungan antarbagian tetap jelas.`,
+    `Arahkan perhatian penonton dari gambaran umum menuju detail yang paling penting.`
+  ];
+  const closing = [
+    `Akhiri dengan rangkuman visual yang memperlihatkan hasil atau pemahaman utama dari ${focus}.`,
+    `Tutup dengan tampilan menyeluruh yang menguatkan pesan utama tentang ${focus}.`,
+    `Berikan satu visual penutup yang mudah diingat dan relevan dengan topik.`
+  ];
+  let phase;
+  if (n===1) phase="opening";
+  else if (n===scenes.length && scenes.length>1) phase="closing";
+  else if (n===2) phase="context";
+  else if (n===3) phase="process";
+  else phase="detail";
+
+  let visualAction;
+  if (phase==="opening") visualAction=choose(openings,index+variation);
+  else if (phase==="closing") visualAction=choose(closing,index+variation);
+  else if (phase==="context") visualAction=`Bangun konteks ${focus}: tampilkan lingkungan, objek, atau situasi yang diperlukan agar penonton memahami latar belakangnya.`;
+  else if (phase==="process") visualAction=choose(explanations,index+variation);
+  else visualAction=choose(explanations,index+variation+1);
+
+  const camera = choose([
+    "wide establishing shot, then a gentle dolly-in",
+    "medium shot with a slow lateral camera move",
+    "close-up detail shot followed by a smooth pull-back",
+    "three-quarter perspective with a subtle orbit camera movement"
+  ],index+variation);
+  const visualStyle = "high-quality educational 3D animation, clean stylized simulation aesthetic, realistic proportions with simplified readable forms, natural daylight, clear material details, balanced cinematic composition, consistent visual design, no watermark, no random text";
+  const frame = ratio==="9:16" ? "vertical composition, 9:16 aspect ratio, keep the main subject centered with safe space above and below" :
+                ratio==="1:1" ? "square composition, 1:1 aspect ratio, balanced centered framing" :
+                "wide cinematic composition, 16:9 aspect ratio";
+  const imagePrompt = `${visualAction} Subject: ${focus}. Scene ${n} of an educational explainer. Environment and supporting elements should be relevant to the topic. Camera: ${camera}. Style: ${visualStyle}. Composition: ${frame}. Maintain continuity with the other scenes.`;
+  const videoPrompt = `Animate this scene for ${duration} seconds. ${visualAction} Camera movement: ${camera}. Add subtle, physically plausible movement to relevant objects and environment. Keep the main action readable, smooth, and continuous; use a natural transition into the next scene. ${frame}. Preserve consistent subject design, lighting, scale, and color palette.`;
+  const vo = makeVoiceOver(phase, focus, n, language, variation);
+  return {duration_seconds:duration, phase, voice_over:vo, image_prompt:imagePrompt, video_prompt:videoPrompt};
+}
+function makeVoiceOver(phase, focus, n, language, variation) {
+  const id = [
+    `Dalam video ini, kita akan memahami ${focus}. Mari mulai dengan melihat gambaran besarnya.`,
+    `${focus} dapat dipahami lebih mudah ketika kita melihat bagaimana setiap bagiannya bekerja bersama.`,
+    `Sekarang, perhatikan proses penting yang membuat ${focus} dapat terjadi.`,
+    `Setiap detail memiliki peran. Dengan melihatnya satu per satu, kita bisa memahami ${focus} dengan lebih jelas.`,
+    `Dari rangkaian tadi, kita dapat melihat hubungan antara proses dan hasil pada ${focus}.`,
+    `Itulah gambaran utama ${focus}. Memahami prosesnya membantu kita melihat mengapa hal ini penting.`
+  ];
+  const en = [
+    "In this video, we explore {topic}. Let's begin with the big picture.",
+    "To understand {topic}, we need to see how its key parts work together.",
+    "Now, let's follow the important process that makes {topic} happen.",
+    "Each detail plays a role. Looking at them step by step makes the process easier to understand.",
+    "We can now see how the different stages connect and lead to the final result.",
+    "That is the key idea behind {topic}. Understanding the process helps explain why it matters."
+  ];
+  const generic = language==="English" ? en : id;
+  let line = generic[Math.min(n-1,generic.length-1)] || generic[3];
+  if (language==="English") line=line.replaceAll("{topic}",focus);
+  if (language==="Bahasa Melayu") line=line
+    .replace("Dalam video ini","Dalam video ini")
+    .replace("kita akan memahami","kita akan memahami")
+    .replace("Mari mulai","Mari kita mulakan")
+    .replace("perhatikan","perhatikan")
+    .replace("dapat","boleh");
+  if (language==="Español") line = `En este video exploramos ${focus}. Observemos cómo se relacionan sus partes y cómo se desarrolla el proceso paso a paso.`;
+  if (language==="Français") line = `Dans cette vidéo, nous découvrons ${focus}. Observons ses éléments essentiels et la manière dont le processus se déroule étape par étape.`;
+  if (language==="日本語") line = `この動画では、${focus}について見ていきます。重要な要素と、その仕組みがどのようにつながっているのかを順番に確認しましょう。`;
+  if (language==="العربية") line = `في هذا الفيديو، نستكشف ${focus}. دعونا نتعرف على العناصر الأساسية وكيف ترتبط ببعضها خطوة بخطوة.`;
+  return line;
+}
+function generateAll() {
+  const topic=cleanTopic($("topic").value);
+  const total=Number($("total").value), perScene=Number($("perScene").value);
+  if(!topic){setStatus("Masukkan topik atau judul video terlebih dahulu.",true);$("topic").focus();return}
+  if(topic.length>500){setStatus("Topik terlalu panjang. Gunakan maksimal 500 karakter.",true);return}
+  if(!Number.isInteger(total)||total<10||total>3600){setStatus("Durasi total harus antara 10 sampai 3600 detik.",true);return}
+  if(!Number.isInteger(perScene)||perScene<3||perScene>60){setStatus("Durasi per scene harus antara 3 sampai 60 detik.",true);return}
+  const settings={topic,total,perScene,language:$("language").value,ratio:$("ratio").value};
+  generationSettings=settings;
+  const durations=distributeDuration(total,perScene);
+  scenes=durations.map((duration,index)=>buildScene(index,duration,{...settings,sceneCount:durations.length}));
+  variationCounter=0;
+  render();
+  setStatus(`${scenes.length} scene berhasil disusun secara lokal. Total durasi tepat ${total} detik.`,false);
+}
+function setStatus(message,error=false){$("status").textContent=message;$("status").style.color=error?"#ff9aa6":"#9eacc5"}
+function render(){
+  $("actions").hidden=scenes.length===0;
+  $("summary").hidden=scenes.length===0;
+  if(!scenes.length){
+    $("results").innerHTML='<div class="empty"><div class="spark">✧</div><strong>Workspace siap digunakan</strong>Masukkan topik di panel kiri, lalu tekan Generate Prompts.</div>';
+    return;
+  }
+  const total=scenes.reduce((sum,s)=>sum+s.duration_seconds,0);
+  $("summary").innerHTML=`<span class="chip">${scenes.length} scenes</span><span class="chip">${total} seconds total</span><span class="chip">${escapeHTML(generationSettings.ratio)}</span><span class="chip">Local template mode</span>`;
+  $("results").innerHTML=scenes.map((s,i)=>`
+    <article class="scene">
+      <div class="scene-top"><div class="scene-title">SCENE ${String(i+1).padStart(2,"0")} · ${escapeHTML(s.phase.toUpperCase())}</div><div class="scene-time">${s.duration_seconds} SEC</div></div>
+      <div class="scene-block">
+        <div class="scene-block-head"><div class="scene-label">Voice-over · ${escapeHTML(generationSettings.language)}</div><button class="btn copy-one" data-copy-field="voice_over" data-copy-scene="${i}">Copy VO</button></div>
+        <div class="scene-text">${escapeHTML(s.voice_over)}</div>
+      </div>
+      <div class="scene-block">
+        <div class="scene-block-head"><div class="scene-label">Image prompt</div><button class="btn copy-one" data-copy-field="image_prompt" data-copy-scene="${i}">Copy Image</button></div>
+        <div class="scene-text">${escapeHTML(s.image_prompt)}</div>
+      </div>
+      <div class="scene-block">
+        <div class="scene-block-head"><div class="scene-label">Video / motion prompt</div><button class="btn copy-one" data-copy-field="video_prompt" data-copy-scene="${i}">Copy Video</button></div>
+        <div class="scene-text">${escapeHTML(s.video_prompt)}</div>
+      </div>
+      <div class="scene-actions"><button class="btn" data-regenerate="${i}">↻ Regenerate scene</button></div>
+    </article>`).join("");
+  document.querySelectorAll("[data-regenerate]").forEach(button=>button.addEventListener("click",()=>regenerateScene(Number(button.dataset.regenerate))));
+  document.querySelectorAll("[data-copy-field]").forEach(button=>button.addEventListener("click",()=>{
+    const scene=scenes[Number(button.dataset.copyScene)];
+    const field=button.dataset.copyField;
+    if(scene&&["voice_over","image_prompt","video_prompt"].includes(field))copyText(scene[field]);
+  }));
+}
+function regenerateScene(index){
+  if(!generationSettings||!scenes[index])return;
+  variationCounter++;
+  const duration=scenes[index].duration_seconds;
+  scenes[index]=buildScene(index,duration,{...generationSettings,sceneCount:scenes.length},variationCounter+index+2);
+  render();
+  setStatus(`Scene ${index+1} dibuat ulang dengan variasi template lokal.`,false);
+}
+function allPrompts(){
+  return scenes.map((s,i)=>`SCENE ${i+1} (${s.duration_seconds} detik)\nIMAGE PROMPT:\n${s.image_prompt}\n\nVIDEO / MOTION PROMPT:\n${s.video_prompt}`).join("\n\n------------------------------\n\n");
+}
+function allVoiceOver(){
+  return scenes.map((s,i)=>`SCENE ${i+1} (${s.duration_seconds} detik)\n${s.voice_over}`).join("\n\n");
+}
+async function copyText(text){
+  try{
+    if(navigator.clipboard&&window.isSecureContext)await navigator.clipboard.writeText(text);
+    else{
+      const area=document.createElement("textarea");area.value=text;area.style.position="fixed";area.style.opacity="0";document.body.appendChild(area);area.select();
+      const ok=document.execCommand("copy");area.remove();if(!ok)throw new Error("copy failed");
+    }
+    setStatus("Berhasil disalin ke clipboard.",false);
+  }catch(e){setStatus("Tidak dapat menyalin otomatis. Pilih dan salin teks secara manual.",true)}
+}
+$("generate").addEventListener("click",generateAll);
+$("copyPrompts").addEventListener("click",()=>copyText(allPrompts()));
+$("copyVO").addEventListener("click",()=>copyText(allVoiceOver()));
+$("reset").addEventListener("click",()=>{
+  scenes=[];generationSettings=null;variationCounter=0;
+  $("topic").value="";$("language").value="Bahasa Indonesia";$("total").value="60";$("perScene").value="8";$("ratio").value="16:9";
+  render();setStatus("Formulir dan hasil telah direset.",false);
+});
+</script>
+</body>
+</html>
